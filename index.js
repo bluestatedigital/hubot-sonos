@@ -29,6 +29,10 @@ module.exports = function(robot) {
     
     var playerStates = {};
     
+    robot.router.get("/hubot/sonos", function(req, resp) {
+        resp.json(playerStates);
+    });
+    
     robot.router.post("/hubot/sonos", function(req, resp) {
         if (! req.is("json")) {
             resp.send(415);
