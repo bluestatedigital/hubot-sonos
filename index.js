@@ -57,7 +57,7 @@ module.exports = function(robot) {
     });
     
     robot.hear(/Computer!/, function(msg) {
-        msg.reply("Why hello there! (ticker tape, ticker tape)");
+        msg.send("Why hello there! (ticker tape, ticker tape)");
     });
     
     robot.respond(/(what's|what is) playing in (\w+\s*)+\??/, function(msg) {
@@ -68,19 +68,19 @@ module.exports = function(robot) {
         if (! players) {
             logger.warning("no players");
             
-            msg.reply("I have no idea.");
+            msg.send("I have no idea.");
         } else {
             Object.keys(players).forEach(function(room) {
                 var player = players[room];
                 var currentTrack = player.currentTrack;
                 
                 if (player.zoneState === "PLAYING") {
-                    msg.reply(util.format(
+                    msg.send(util.format(
                         "now playing on %s: “%s” by “%s” on “%s”",
                         room, currentTrack.title, currentTrack.artist, currentTrack.album
                     ));
                 } else {
-                    msg.reply(util.format("%s is not playing", room));
+                    msg.send(util.format("%s is not playing", room));
                 }
             });
         }

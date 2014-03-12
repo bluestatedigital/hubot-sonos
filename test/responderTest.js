@@ -96,7 +96,7 @@ describe("Sonos listener", function() {
 
     it("responds when greeted", function(done) {
         // here's where the magic happens!
-        adapter.on("reply", function(envelope, strings) {
+        adapter.on("send", function(envelope, strings) {
             expect(strings[0]).match(/Why hello there/);
 
             done();
@@ -106,7 +106,7 @@ describe("Sonos listener", function() {
     });
 
     it("is reasonable when no data received", function(done) {
-        adapter.on("reply", function(envelope, strings) {
+        adapter.on("send", function(envelope, strings) {
             expect(strings[0]).match(/I have no idea/);
 
             done();
@@ -139,7 +139,7 @@ describe("Sonos listener", function() {
             adapter.receive(new TextMessage(user, "Eddie: what's playing in boston?"));
         });
         
-        adapter.on("reply", function(envelope, strings) {
+        adapter.on("send", function(envelope, strings) {
             expect(strings[0]).match(/Orion/);
 
             done();
@@ -170,7 +170,7 @@ describe("Sonos listener", function() {
             adapter.receive(new TextMessage(user, "Eddie: what's playing in boston?"));
         });
         
-        adapter.on("reply", function(envelope, strings) {
+        adapter.on("send", function(envelope, strings) {
             expect(strings[0]).match(/I have no idea/);
 
             done();
