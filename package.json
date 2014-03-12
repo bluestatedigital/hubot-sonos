@@ -1,0 +1,32 @@
+{
+  "name": "hubot-sonos",
+  "version": "0.0.0",
+  "description": "Sonos integration for Hubot",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blalor/hubot-sonos.git"
+  },
+  "keywords": [
+    "hubot",
+    "sonos"
+  ],
+  "author": "Brian Lalor",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/blalor/hubot-sonos/issues"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.6.3",
+    "chai": "~1.9.0",
+    "hubot-mock-adapter": "~1.0.0",
+    "mocha": "~1.17.1",
+    "hubot": "~2.7.2",
+    "sinon": "~1.9.0",
+    "request": "~2.34.0",
+    "q": "~1.0.1"
+  }
+}
