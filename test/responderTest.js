@@ -115,6 +115,16 @@ describe("Sonos listener", function() {
         adapter.receive(new TextMessage(user, "Eddie: what's playing in boston?"));
     });
 
+    it("is reasonable and case-insensitive when no data received", function(done) {
+        adapter.on("send", function(envelope, strings) {
+            expect(strings[0]).match(/I have no idea/);
+
+            done();
+        });
+
+        adapter.receive(new TextMessage(user, "eddie: what's playing in boston?"));
+    });
+
     it("returns the current track when playing", function(done) {
         postData({
             event: "transport-state",

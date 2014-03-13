@@ -60,7 +60,7 @@ module.exports = function(robot) {
         msg.send("Why hello there! (ticker tape, ticker tape)");
     });
     
-    robot.respond(/(what's|what is) playing in (\w+\s*)+\??/, function(msg) {
+    robot.respond(/(what's|what is) playing in (\w+\s*)+\??/i, function(msg) {
         var location = msg.match[2].toLowerCase();
         
         var players = playerStates[location];
