@@ -181,7 +181,60 @@ describe("Sonos listener", function() {
         });
         
         adapter.on("send", function(envelope, strings) {
-            expect(strings[0]).match(/I have no idea/);
+            expect(strings[0]).match(/is not playing/);
+
+            done();
+        });
+    });
+
+    it("reflects playing/stopped status", function(done) {
+        
+        Q.nfcall(postData, { // playing
+            event: "transport-state",
+            location: "Boston",
+            room: "Middle of Office",
+            body: {
+                room: "Middle of Office",
+                zoneState: "PLAYING",
+                trackNo: 1,
+                currentTrack: {
+                    title: "Orion (Instrumental)",
+                    artist: "Metallica",
+                    album: "Master Of Puppets"
+                },
+                "nextTrack": {
+                    title: "Pompeii",
+                    artist: "Bastille",
+                    album: "Bad Blood"
+                }
+            }
+        })
+        .then(Q.nfcall(postData, { // stopped
+            event: "transport-state",
+            location: "Boston",
+            room: "Middle of Office",
+            body: {
+                room: "Middle of Office",
+                zoneState: "STOPPED",
+                trackNo: 1,
+                currentTrack: {
+                    title: "Orion (Instrumental)",
+                    artist: "Metallica",
+                    album: "Master Of Puppets"
+                },
+                "nextTrack": {
+                    title: "Pompeii",
+                    artist: "Bastille",
+                    album: "Bad Blood"
+                }
+            }
+        }))
+        .then(function() {
+            adapter.receive(new TextMessage(user, "Eddie: what's playing in boston?"));
+        });
+        
+        adapter.on("send", function(envelope, strings) {
+            expect(strings[0]).match(/is not playing/);
 
             done();
         });

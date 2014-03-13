@@ -44,7 +44,7 @@ module.exports = function(robot) {
             
             logger.info("got %s event for %s", payload.event, location);
             
-            if (payload.event === "transport-state" && payload.body.zoneState === "PLAYING") {
+            if (payload.event === "transport-state") {
                 if (! (location in playerStates)) {
                     playerStates[location] = {};
                 }
